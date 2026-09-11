@@ -19,10 +19,19 @@ the app against it:
 ```
 export CEDEV=/path/to/CEdev
 make -C third_party/witi/lib
-make WITI=third_party/witi/lib
+make
 ```
 
-`WITI` points anywhere a WiTi `lib` directory lives, so a checkout beside this one works too.
+`WITI` points anywhere a WiTi `lib` directory lives, so a checkout beside this one works too:
+`make WITI=../WiTi/lib`.
+
+### On CEagle Flight
+
+Flight does not use the submodule at all. The manifest names `witi` under `[program] depends`, so
+Flight fetches the archive WiTi already publishes on Roost, unpacks its stub and header, and builds
+Swoop against those. The build command there is a plain `make`: the makefile notices `CEAGLE_FLIGHT`
+and leaves `EXTRA_LIBLOAD_LIBS` to the environment instead of pointing it at a checkout that is not
+there.
 
 ## License
 

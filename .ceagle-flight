@@ -13,10 +13,12 @@ program that needs a library brings the library along in the right order.
 categories = ["ceagle-apps"]
 tags = ["roost", "installer", "wifi", "network", "ceagle"]
 author = "alessiodam"
+# Flight fetches the archive WiTi publishes on Roost and stages its stub and
+# header before the build starts, so this repository builds nothing but Swoop.
 depends = ["witi"]
 
 [build]
-command = "make -C third_party/witi/lib && make WITI=third_party/witi/lib"
+command = "make"
 output = "bin/SWOOP.8xp"
-submodules = true
-timeout = "20m"
+submodules = false
+timeout = "10m"
