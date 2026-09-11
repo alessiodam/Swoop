@@ -1,0 +1,22 @@
+[program]
+name = "Swoop"
+version = "1.0.0"
+summary = "Browse the Roost and install programs straight onto the calculator over WiFi."
+description = """
+Swoop is the official CEagle app for the TI-84 Plus CE. It browses the Roost (the CEagle
+program registry), checks what is already on the calculator against what the
+Roost is serving, and installs or updates programs in place.
+
+Swoop reads the dependency graph the Roost publishes, so installing a
+program that needs a library brings the library along in the right order.
+"""
+categories = ["ceagle-apps"]
+tags = ["roost", "installer", "wifi", "network", "ceagle"]
+author = "alessiodam"
+depends = ["witi"]
+
+[build]
+command = "make -C third_party/witi/lib && make WITI=third_party/witi/lib"
+output = "bin/SWOOP.8xp"
+submodules = true
+timeout = "20m"

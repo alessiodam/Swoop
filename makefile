@@ -1,0 +1,19 @@
+NAME = SWOOP
+DESCRIPTION = "Swoop for the CEagle Roost"
+COMPRESSED = YES
+COMPRESSED_MODE = zx0
+ARCHIVED = YES
+
+WITI ?= ../../WiTi/lib
+
+HTTP_LIMITS = -DHTTP_HEAD_MAX=1024 -DHTTP_HEADER_ARENA=3072 -DHTTP_HEADER_FIELDS=40 \
+              -DHTTP_PATH_MAX=224 -DHTTP_URL_MAX=352
+
+CFLAGS = -Wall -Wextra -Oz -Isrc -I$(WITI) $(HTTP_LIMITS)
+CXXFLAGS = $(CFLAGS)
+LTOFLAGS = -Wall -Wextra -Oz
+
+EXTRA_LIBLOAD_LIBS = $(WITI)/bin/WITI.lib
+DEPS = $(WITI)/bin/WITI.lib
+
+include $(shell cedev-config --makefile)
